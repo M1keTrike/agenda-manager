@@ -1,5 +1,5 @@
 export interface PeopleI {
-  id?: string;
+  _id?: string;
   nombrecompleto: string;
   email: string;
   telefono: string;

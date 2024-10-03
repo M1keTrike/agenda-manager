@@ -1,4 +1,4 @@
-export interface AgentI {
+export interface AgendI {
   id?: string;
   tipo_agenda: string;
   nombre: string;

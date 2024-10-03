@@ -4,6 +4,7 @@ import { EventsEventsListComponent } from './events-events-list/events-events-li
 import { EventsEventsSearchBarComponent } from './events-events-search-bar/events-events-search-bar.component';
 import { EventsEventCardComponent } from './events-event-card/events-event-card.component';
 import { EventsEventDetailsCardComponent } from './events-event-details-card/events-event-details-card.component';
+import { EventsEventFormComponent } from './events-event-form/events-event-form.component';
 
 
 
@@ -12,7 +13,8 @@ import { EventsEventDetailsCardComponent } from './events-event-details-card/eve
     EventsEventsListComponent,
     EventsEventsSearchBarComponent,
     EventsEventCardComponent,
-    EventsEventDetailsCardComponent
+    EventsEventDetailsCardComponent,
+    EventsEventFormComponent
   ],
   imports: [
     CommonModule

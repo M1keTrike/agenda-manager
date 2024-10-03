@@ -5,6 +5,7 @@ import { AgendsSearchBarComponent } from './agends-search-bar/agends-search-bar.
 import { AgendsAgendCardComponent } from './agends-agend-card/agends-agend-card.component';
 import { AgendsAgendDetailsCardComponent } from './agends-agend-details-card/agends-agend-details-card.component';
 import { AgendsAgendRemainderComponent } from './agends-agend-remainder/agends-agend-remainder.component';
+import { AgendsAgendFormComponent } from './agends-agend-form/agends-agend-form.component';
 
 
 
@@ -14,7 +15,8 @@ import { AgendsAgendRemainderComponent } from './agends-agend-remainder/agends-a
     AgendsSearchBarComponent,
     AgendsAgendCardComponent,
     AgendsAgendDetailsCardComponent,
-    AgendsAgendRemainderComponent
+    AgendsAgendRemainderComponent,
+    AgendsAgendFormComponent
   ],
   imports: [
     CommonModule

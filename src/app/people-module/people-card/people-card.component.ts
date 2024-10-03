@@ -1,10 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { PeopleI } from '../people-i';
 
 @Component({
   selector: 'app-people-card',
   templateUrl: './people-card.component.html',
-  styleUrl: './people-card.component.css'
+  styleUrls: ['./people-card.component.css'],
 })
 export class PeopleCardComponent {
+  @Output() selectedPerson = new EventEmitter<PeopleI>();
 
+  @Input() person: PeopleI = {
+    _id: '',
+    nombrecompleto: '',
+    email: '',
+    telefono: '',
+    evento_actual: '',
+    agenda_id: [],
+    createdAt: new Date(0),
+    updatedAt: new Date(0),
+  };
+
+  clickSelected(): void {
+    this.selectedPerson.emit(this.person);
+  }
+
+  constructor() {}
 }

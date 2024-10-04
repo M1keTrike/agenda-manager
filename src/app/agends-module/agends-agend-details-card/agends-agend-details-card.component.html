@@ -1,1 +1,35 @@
-<p>agends-agend-details-card works!</p>
+<div
+  *ngIf="selectedAgend"
+  class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
+>
+  <h2 class="text-lg font-semibold text-gray-800 mb-2">
+    {{ selectedAgend.nombre }}
+  </h2>
+  <p class="text-gray-600">Tipo de agenda: {{ selectedAgend.tipo_agenda }}</p>
+  <p class="text-gray-400 text-xs mt-2">
+    Creado: {{ selectedAgend.fecha_creacion | date }}
+  </p>
+  <p class="text-gray-400 text-xs">
+    Actualizado: {{ selectedAgend.fecha_modificacion | date }}
+  </p>
+
+  <div class="flex m-2">
+    <button
+      class="bg-blue-500 text-white p-2 rounded m-0.5 w-1/2 hover:bg-blue-600 transition"
+    >
+      Ver Detalles
+    </button>
+    <button
+      class="bg-red-400 text-white p-2 rounded m-0.5 w-1/4 hover:bg-red-600 transition"
+      (click)="toDeleteAgend()"
+    >
+      Eliminar
+    </button>
+    <button
+      class="bg-green-600 text-white p-2 rounded m-0.5 w-1/4 hover:bg-green-700 transition"
+      (click)="toEditAgend()"
+    >
+      Editar
+    </button>
+  </div>
+</div>

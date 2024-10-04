@@ -6,8 +6,9 @@ import { AgendsAgendCardComponent } from './agends-agend-card/agends-agend-card.
 import { AgendsAgendDetailsCardComponent } from './agends-agend-details-card/agends-agend-details-card.component';
 import { AgendsAgendRemainderComponent } from './agends-agend-remainder/agends-agend-remainder.component';
 import { AgendsAgendFormComponent } from './agends-agend-form/agends-agend-form.component';
-
-
+import { AgendsAgendsPageComponent } from './agends-agends-page/agends-agends-page.component';
+import { AgendsModuleRoutingModule } from './agends-module-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,10 +17,9 @@ import { AgendsAgendFormComponent } from './agends-agend-form/agends-agend-form.
     AgendsAgendCardComponent,
     AgendsAgendDetailsCardComponent,
     AgendsAgendRemainderComponent,
-    AgendsAgendFormComponent
+    AgendsAgendFormComponent,
+    AgendsAgendsPageComponent,
   ],
-  imports: [
-    CommonModule
-  ]
+  imports: [CommonModule, AgendsModuleRoutingModule, ReactiveFormsModule],
 })
-export class AgendsModuleModule { }
+export class AgendsModuleModule {}

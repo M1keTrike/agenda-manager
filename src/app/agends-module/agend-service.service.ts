@@ -7,12 +7,12 @@ import { environment } from '../../enviroments/enviroment';
 @Injectable({
   providedIn: 'root',
 })
-export class AgendaService {
+export class AgendService {
   private apiUrl = `${environment.apiUrl}/agendas`;
 
   constructor(private http: HttpClient) {}
 
-  createAgend(agenda: AgendI): Observable<AgendaI> {
+  createAgend(agenda: AgendI): Observable<AgendI> {
     return this.http.post<AgendI>(this.apiUrl, agenda);
   }
 
@@ -30,5 +30,9 @@ export class AgendaService {
 
   deleteAgend(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  getAgendsByPersonaId(personaId: string): Observable<AgendI[]> {
+    return this.http.get<AgendI[]>(`${this.apiUrl}/persona/${personaId}`);
   }
 }

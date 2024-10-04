@@ -1,0 +1,9 @@
+<div
+  class="min-h-screen flex flex-col items-center justify-between bg-blue-500"
+>
+  <h1 class="text-4xl font-bold mb-8 text-white">
+    Agendas de {{ personOwner?.nombrecompleto }}
+  </h1>
+
+  <app-agends-dashboard [personOwner]="personOwner"></app-agends-dashboard>
+</div>

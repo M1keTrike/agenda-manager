@@ -1,5 +1,5 @@
 export interface AgendI {
-  id?: string;
+  _id?: string;
   tipo_agenda: string;
   nombre: string;
   persona_id: string;

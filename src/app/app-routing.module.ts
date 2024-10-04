@@ -6,10 +6,17 @@ const routes: Routes = [
     path: 'people',
     loadChildren: () =>
       import('./people-module/people-module.module').then(
-        (m) => m.PeopleModuleModule 
+        (m) => m.PeopleModuleModule
       ),
   },
-  { path: '', redirectTo: 'people', pathMatch: 'full' }, 
+  {
+    path: 'agends',
+    loadChildren: () =>
+      import('./agends-module/agends-module.module').then(
+        (m) => m.AgendsModuleModule
+      ),
+  },
+  { path: '', redirectTo: 'people', pathMatch: 'full' },
 ];
 
 @NgModule({

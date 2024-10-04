@@ -87,8 +87,7 @@ export class PeopleFormComponent implements OnInit, OnChanges {
                 }, 3000);
               },
               error: (err) => {
-                this.errorMessage =
-                  'Error al editar, intente más tarde.';
+                this.errorMessage = 'Error al editar, intente más tarde.';
                 setTimeout(() => {
                   this.errorMessage = '';
                 }, 1000);

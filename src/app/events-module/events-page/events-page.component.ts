@@ -1,28 +1,34 @@
 import { Component } from '@angular/core';
-import { AgendI } from '../../agends-module/agend-i';
+import { AgendI } from '../../agends-module/interfaces/agend-i';
 import { SharedService } from '../../services/shared.service';
 import { Router } from '@angular/router';
-import { PeopleI } from '../../people-module/people-i';
+import { PeopleI } from '../../people-module/interfaces/people-i';
+import { AgendDataI } from '../interfaces/agendData-i';
 
 @Component({
-  selector: 'app-events-page',
+  selector: 'events-page',
   templateUrl: './events-page.component.html',
   styleUrl: './events-page.component.css',
 })
 export class EventsPageComponent {
-  agendData: any;
+  agendData: AgendDataI | undefined;
   mainAgend: AgendI | undefined;
-  AgendOwner: PeopleI | undefined;
+  agendOwner: PeopleI | undefined;
 
   constructor(private sharedService: SharedService, private router: Router) {}
 
   ngOnInit(): void {
     this.agendData = this.sharedService.getData();
-    this.mainAgend = this.agendData.agend;
+
+    if (this.agendData) {
+      this.mainAgend = this.agendData.agend;
+      this.agendOwner = this.agendData.owner;
+    }
   }
 
   returnToAgends() {
     this.router.navigate(['/agends']);
-    this.sharedService.setData(this.agendData.owner);
+
+    if (this.agendData) this.sharedService.setData(this.agendData.owner);
   }
 }

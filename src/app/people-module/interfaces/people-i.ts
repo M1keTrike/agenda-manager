@@ -7,4 +7,6 @@ export interface PeopleI {
   agenda_id?: string[];
   createdAt?: Date;
   updatedAt?: Date;
+  contrasena?: String;
+  rol?: String;
 }

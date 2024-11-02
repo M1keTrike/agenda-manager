@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { EventI } from '../event-i';
+import { EventI } from '../interfaces/event-i';
 
 @Component({
-  selector: 'app-events-event-card',
+  selector: 'events-card',
   templateUrl: './events-event-card.component.html',
   styleUrls: ['./events-event-card.component.css'],
 })

@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { AgendI } from '../agend-i';
+import { AgendI } from '../interfaces/agend-i';
 
 @Component({
-  selector: 'app-agends-agend-card',
+  selector: 'agends-card',
   templateUrl: './agends-agend-card.component.html',
   styleUrls: ['./agends-agend-card.component.css'],
 })

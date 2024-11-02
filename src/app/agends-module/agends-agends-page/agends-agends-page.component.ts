@@ -1,20 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { PeopleI } from '../../people-module/people-i';
+import { PeopleI } from '../../people-module/interfaces/people-i';
+
 import { SharedService } from '../../services/shared.service';
 
+import { Router } from '@angular/router';
+
 @Component({
-  selector: 'app-agends-agends-page',
+  selector: 'agends-page',
   templateUrl: './agends-agends-page.component.html',
-  styleUrl: './agends-agends-page.component.css',
+  styleUrls: ['./agends-agends-page.component.css'],
 })
 export class AgendsAgendsPageComponent implements OnInit {
-  personOwner: PeopleI |  undefined ;
+  personOwner: PeopleI | undefined;
 
-  constructor(private sharedService: SharedService) {}
+  constructor(private sharedService: SharedService, private router: Router) {}
 
   ngOnInit(): void {
     this.personOwner = this.sharedService.getData();
-    
-    
+  }
+
+  onLogout(): void {
+    this.sharedService.setData(undefined);
+    this.router.navigate(['/login']);
   }
 }

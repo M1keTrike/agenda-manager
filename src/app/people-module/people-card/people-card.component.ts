@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { PeopleI } from '../people-i';
+import { PeopleI } from '../interfaces/people-i';
 
 @Component({
-  selector: 'app-people-card',
+  selector: 'people-card',
   templateUrl: './people-card.component.html',
   styleUrls: ['./people-card.component.css'],
 })

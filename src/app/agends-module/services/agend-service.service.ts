@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AgendI } from './agend-i';
-import { environment } from '../../enviroments/enviroment';
+import { AgendI } from '../interfaces/agend-i';
+import { EventI } from '../../events-module/interfaces/event-i';
+import { environment } from '../../../enviroments/enviroment';
 
 @Injectable({
   providedIn: 'root',
@@ -34,5 +35,11 @@ export class AgendService {
 
   getAgendsByPersonaId(personaId: string): Observable<AgendI[]> {
     return this.http.get<AgendI[]>(`${this.apiUrl}/persona/${personaId}`);
+  }
+
+  getEventosByOwnerId(ownerId: string): Observable<EventI[]> {
+    return this.http.get<EventI[]>(
+      `${this.apiUrl}/persona/eventos/owner/${ownerId}`
+    );
   }
 }

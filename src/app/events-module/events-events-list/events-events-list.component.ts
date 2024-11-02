@@ -1,17 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AgendI } from '../../agends-module/agend-i';
-import { EventI } from '../event-i';
-import { EventService } from '../event-service.service';
+import { AgendI } from '../../agends-module/interfaces/agend-i';
+import { EventI } from '../interfaces/event-i';
+import { EventService } from '../services/event-service.service';
+import { PeopleI } from '../../people-module/interfaces/people-i';
 
 @Component({
-  selector: 'app-events-events-list',
+  selector: 'events-list',
   templateUrl: './events-events-list.component.html',
   styleUrls: ['./events-events-list.component.css'],
 })
 export class EventsEventsListComponent implements OnInit {
   @Input() mainAgend: AgendI | undefined;
+  @Input() agendOwner: PeopleI | undefined;
   eventsList: EventI[] = [];
+  filteredEventsList: EventI[] = [];
   selectedEvent: EventI | null = null;
+  showForm: boolean = false;
 
   constructor(private eventsService: EventService) {}
 
@@ -22,7 +26,10 @@ export class EventsEventsListComponent implements OnInit {
   loadEvents(): void {
     if (this.mainAgend?._id) {
       this.eventsService.getEventsByAgenda(this.mainAgend._id).subscribe(
-        (events: EventI[]) => (this.eventsList = events),
+        (events: EventI[]) => {
+          this.eventsList = events;
+          this.filteredEventsList = events;
+        },
         (error) => console.error('Error al cargar los eventos:', error)
       );
     }
@@ -43,10 +50,12 @@ export class EventsEventsListComponent implements OnInit {
 
   onEditEvent(event: EventI) {
     this.selectedEvent = event;
+    this.showForm = true;
   }
 
   onAddEvent() {
-    this.selectedEvent = null; 
+    this.selectedEvent = null;
+    this.showForm = true;
   }
 
   onSaveEvent(event: EventI) {
@@ -74,7 +83,14 @@ export class EventsEventsListComponent implements OnInit {
     this.resetFormState();
   }
 
+  onSearch(term: string) {
+    this.filteredEventsList = this.eventsList.filter((event) =>
+      event.titulo.toLowerCase().includes(term.toLowerCase())
+    );
+  }
+
   private resetFormState() {
     this.selectedEvent = null;
+    this.showForm = false;
   }
 }

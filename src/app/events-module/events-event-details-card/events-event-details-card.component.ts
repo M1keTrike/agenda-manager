@@ -1,10 +1,10 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { EventI } from '../event-i';
+import { EventI } from '../interfaces/event-i';
 
 @Component({
-  selector: 'app-events-event-details-card',
+  selector: 'events-details-card',
   templateUrl: './events-event-details-card.component.html',
-  styleUrls: ['./events-event-details-card.component.css']
+  styleUrls: ['./events-event-details-card.component.css'],
 })
 export class EventsEventDetailsCardComponent {
   @Input() selectedEvent: EventI | undefined;

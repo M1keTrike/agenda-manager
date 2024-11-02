@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { PeopleI } from '../people-i';
+import { PeopleI } from '../interfaces/people-i';
 
 @Component({
-  selector: 'app-people-dashboard',
+  selector: 'people-dashboard',
   templateUrl: './people-dashboard.component.html',
   styleUrl: './people-dashboard.component.css',
 })

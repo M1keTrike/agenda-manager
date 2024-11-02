@@ -1,14 +1,16 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EventI } from '../event-i';
-import { AgendI } from '../../agends-module/agend-i';
+import { EventI } from '../interfaces/event-i';
+import { AgendI } from '../../agends-module/interfaces/agend-i';
+import { PeopleI } from '../../people-module/interfaces/people-i';
 
 @Component({
-  selector: 'app-events-event-form',
+  selector: 'events-form',
   templateUrl: './events-event-form.component.html',
   styleUrls: ['./events-event-form.component.css'],
 })
 export class EventsEventFormComponent implements OnInit {
+  @Input() agendOwner: PeopleI | undefined;
   @Input() mainAgend: AgendI | undefined;
   @Input() event: EventI | null = null;
   @Output() saveEvent = new EventEmitter<EventI>();
@@ -27,7 +29,8 @@ export class EventsEventFormComponent implements OnInit {
       ubicacion: [''],
       tipo_evento: ['', Validators.required],
       estado: ['', Validators.required],
-      id_agenda: [null], 
+      id_agenda: [null],
+      owner: [null],
     });
   }
 
@@ -35,11 +38,20 @@ export class EventsEventFormComponent implements OnInit {
     if (this.event) {
       this.eventForm.patchValue(this.event);
     }
+
+    if (this.agendOwner) {
+      this.eventForm.patchValue({ owner: this.agendOwner._id });
+    }
+
+    if (this.mainAgend) {
+      this.eventForm.patchValue({ id_agenda: this.mainAgend._id }); // Asigna el ID de la agenda
+    }
   }
 
   onSubmit(): void {
     if (this.eventForm.valid) {
       const updatedEvent: EventI = { ...this.event, ...this.eventForm.value };
+      console.log('Evento a guardar:', updatedEvent);
       this.saveEvent.emit(updatedEvent);
     }
   }

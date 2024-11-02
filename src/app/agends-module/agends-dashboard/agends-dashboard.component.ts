@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PeopleI } from '../../people-module/people-i';
-import { AgendI } from '../agend-i';
-import { AgendService } from '../agend-service.service';
+import { PeopleI } from '../../people-module/interfaces/people-i';
+import { AgendI } from '../interfaces/agend-i';
+import { AgendService } from '../services/agend-service.service';
 
 @Component({
-  selector: 'app-agends-dashboard',
+  selector: 'agends-dashboard',
   templateUrl: './agends-dashboard.component.html',
   styleUrls: ['./agends-dashboard.component.css'],
 })

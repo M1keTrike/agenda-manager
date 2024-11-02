@@ -1,13 +1,14 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { AgendI } from '../agend-i';
+import { AgendI } from '../interfaces/agend-i';
 import { ConfirmDialogComponent } from '../../people-module/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SharedService } from '../../services/shared.service';
 import { Router } from '@angular/router';
-import { PeopleI } from '../../people-module/people-i';
+import { PeopleI } from '../../people-module/interfaces/people-i';
+import { AgendDataI } from '../../events-module/interfaces/agendData-i';
 
 @Component({
-  selector: 'app-agends-agend-details-card',
+  selector: 'agends-details-card',
   templateUrl: './agends-agend-details-card.component.html',
   styleUrls: ['./agends-agend-details-card.component.css'],
 })
@@ -49,7 +50,13 @@ export class AgendsAgendDetailsCardComponent {
   }
 
   navigateToEvents(): void {
-    this.sharedService.setData({agend: this.selectedAgend, owner: this.agendOwner});
-    this.router.navigate(['/events']);
+    if (this.selectedAgend && this.agendOwner) {
+      const toEventsPageData: AgendDataI = {
+        agend: this.selectedAgend,
+        owner: this.agendOwner,
+      };
+      this.sharedService.setData(toEventsPageData);
+      this.router.navigate(['/events']);
+    }
   }
 }

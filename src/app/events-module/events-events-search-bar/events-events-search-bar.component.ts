@@ -1,10 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-events-events-search-bar',
+  selector: 'events-search-bar',
   templateUrl: './events-events-search-bar.component.html',
-  styleUrl: './events-events-search-bar.component.css'
+  styleUrls: ['./events-events-search-bar.component.css']
 })
 export class EventsEventsSearchBarComponent {
+  @Output() search = new EventEmitter<string>();
 
+  onSearch(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement) {
+      this.search.emit(inputElement.value);
+    }
+  }
 }

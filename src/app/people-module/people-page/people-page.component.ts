@@ -1,19 +1,22 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { PeopleServiceService } from '../people-service.service';
-import { PeopleI } from '../people-i';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { PeopleServiceService } from '../services/people-service.service';
+import { PeopleI } from '../interfaces/people-i';
 
 @Component({
-  selector: 'app-people-page',
+  selector: 'people-page',
   templateUrl: './people-page.component.html',
-  styleUrl: './people-page.component.css',
+  styleUrls: ['./people-page.component.css'],
 })
 export class PeoplePageComponent implements OnInit {
   toEditPerson: PeopleI | undefined;
   selectedPerson: PeopleI | undefined;
-  peopleForm: any;
-  constructor(private peopleService: PeopleServiceService) {}
-
   people_list: PeopleI[] = [];
+
+  constructor(
+    private peopleService: PeopleServiceService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadPeople();
@@ -21,8 +24,12 @@ export class PeoplePageComponent implements OnInit {
 
   loadPeople() {
     this.peopleService.getPeople().subscribe((people) => {
-      this.people_list = people;
+      this.people_list = people.filter((person) => person.rol !== 'admin');
     });
+  }
+
+  onLogout(): void {
+    this.router.navigate(['/login']);
   }
 
   onPersonAdded(newPerson: PeopleI) {
@@ -33,16 +40,15 @@ export class PeoplePageComponent implements OnInit {
     if (personToDelete && personToDelete._id) {
       this.peopleService.deletePerson(personToDelete._id).subscribe(
         () => {
-          console.log('Person successfully deleted ');
           this.loadPeople();
           this.selectedPerson = undefined;
         },
         (error) => {
-          console.error('Error while deleting person:', error);
+          console.error(error);
         }
       );
     } else {
-      console.log('Invalid person to delete');
+      console.log('Invalido');
     }
   }
 

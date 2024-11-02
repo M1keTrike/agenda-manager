@@ -1,1 +1,17 @@
-<p>agends-agend-remainder works!</p>
+<div class="bg-white p-4 rounded-lg shadow-md w-full max-w-md mx-auto mt-4">
+    <h2 class="text-xl font-bold mb-4 text-gray-700">Recordatorios de Eventos Próximos</h2>
+  
+    <div *ngIf="upcomingEvents.length > 0; else noReminders">
+      <ul>
+        <li *ngFor="let event of upcomingEvents" class="mb-2 p-2 bg-blue-100 rounded">
+          <p class="text-gray-800 font-semibold">{{ event.titulo }}</p>
+          <p class="text-gray-600">Fecha de Inicio: {{ event.fecha_inicio | date: 'longDate' }}</p>
+        </li>
+      </ul>
+    </div>
+  
+    <ng-template #noReminders>
+      <p class="text-gray-600">No hay eventos próximos en los próximos 7 días.</p>
+    </ng-template>
+  </div>
+  

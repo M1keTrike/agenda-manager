@@ -3,12 +3,12 @@
 >
   <div class="flex mb-8 w-full">
     <div class="w-1/2 justify-center">
-      <app-agends-agend-details-card
+      <agends-details-card
         [agendOwner]="personOwner"
         [selectedAgend]="selectedAgend"
         (deleteAgend)="onAgendDeleted($event)"
         (editAgend)="onAgendEdited($event)"
-      ></app-agends-agend-details-card>
+      ></agends-details-card>
     </div>
   </div>
 
@@ -16,17 +16,17 @@
     class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8 w-full max-w-6xl px-4"
   >
     <div *ngFor="let agenda of agends_list" (click)="selectAgend(agenda)">
-      <app-agends-agend-card
+      <agends-card
         [agenda]="agenda"
         (select)="selectAgend($event)"
-      ></app-agends-agend-card>
+      ></agends-card>
     </div>
   </div>
 
-  <app-agends-agend-form
+  <agends-form
     (editedAgend)="onAgendEditedSuccess($event)"
     [toEditAgend]="toEditAgend"
     [personOwner]="personOwner"
     (agendAdded)="onAgendAdded($event)"
-  ></app-agends-agend-form>
+  ></agends-form>
 </div>

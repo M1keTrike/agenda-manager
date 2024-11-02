@@ -23,7 +23,14 @@ const routes: Routes = [
         (m) => m.EventsModuleModule
       ),
   },
-  { path: '', redirectTo: 'people', pathMatch: 'full' },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./login-module/login-module.module').then(
+        (m) => m.LoginModuleModule
+      ),
+  },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({

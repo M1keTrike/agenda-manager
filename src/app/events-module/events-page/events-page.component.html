@@ -6,10 +6,10 @@
     >
       Regresar
     </button>
-    <h1 class="text-6xl font-bold text-white">Eventos</h1>
+    <h1 class="text-6xl font-bold text-white">Eventos de {{mainAgend?.nombre}}</h1>
   </div>
 
   <div class="w-full">
-    <app-events-events-list [mainAgend]="mainAgend"></app-events-events-list>
+    <events-list [mainAgend]="mainAgend" [agendOwner]="agendOwner"></events-list>
   </div>
 </div>

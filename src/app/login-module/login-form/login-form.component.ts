@@ -7,7 +7,7 @@ import { SharedService } from '../../services/shared.service';
 import { PeopleI } from '../../people-module/interfaces/people-i';
 
 @Component({
-  selector: 'app-login-form',
+  selector: 'login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css'],
 })

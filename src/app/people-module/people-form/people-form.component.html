@@ -1,92 +1,114 @@
-<div class="max-w-lg mx-auto mt-8 bg-white p-6 rounded m-4">
-  <h2 class="text-2xl font-bold mb-6 text-center">{{ formTitle }}</h2>
+<form
+  [formGroup]="peopleForm"
+  (ngSubmit)="onSubmit()"
+  class="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+>
+  <h2 class="text-2xl font-bold mb-6 text-gray-800">{{ formTitle }}</h2>
 
-  <form [formGroup]="peopleForm" (ngSubmit)="onSubmit()">
-    <div class="mb-4">
-      <label for="nombrecompleto" class="block text-gray-700"
-        >Nombre Completo</label
-      >
-      <input
-        id="nombrecompleto"
-        type="text"
-        formControlName="nombrecompleto"
-        class="w-full p-2 border border-gray-300 rounded"
-        [ngClass]="{
-          'border-red-500':
-            peopleForm.get('nombrecompleto')?.invalid &&
-            peopleForm.get('nombrecompleto')?.touched
-        }"
-      />
-      <div
-        *ngIf="
-          peopleForm.get('nombrecompleto')?.invalid &&
-          peopleForm.get('nombrecompleto')?.touched
-        "
-        class="text-red-500"
-      >
-        El nombre completo es obligatorio.
-      </div>
-    </div>
-
-    <div class="mb-4">
-      <label for="email" class="block text-gray-700">Email</label>
-      <input
-        id="email"
-        type="email"
-        formControlName="email"
-        class="w-full p-2 border border-gray-300 rounded"
-        [ngClass]="{
-          'border-red-500':
-            peopleForm.get('email')?.invalid && peopleForm.get('email')?.touched
-        }"
-      />
-      <div
-        *ngIf="
-          peopleForm.get('email')?.invalid && peopleForm.get('email')?.touched
-        "
-        class="text-red-500"
-      >
-        El email es obligatorio y debe ser válido.
-      </div>
-    </div>
-
-    <div class="mb-4">
-      <label for="telefono" class="block text-gray-700">Teléfono</label>
-      <input
-        id="telefono"
-        type="text"
-        formControlName="telefono"
-        class="w-full p-2 border border-gray-300 rounded"
-        [ngClass]="{
-          'border-red-500':
-            peopleForm.get('telefono')?.invalid &&
-            peopleForm.get('telefono')?.touched
-        }"
-      />
-      <div
-        *ngIf="
-          peopleForm.get('telefono')?.invalid &&
-          peopleForm.get('telefono')?.touched
-        "
-        class="text-red-500"
-      >
-        El teléfono es obligatorio.
-      </div>
-    </div>
-
-    <div class="flex justify-center">
-      <button
-        type="submit"
-        [disabled]="peopleForm.invalid"
-        class="bg-blue-500 text-white p-2 rounded m-0.5 w-8/12 hover:bg-blue-600 transition"
-      >
-        {{ formButton }}
-      </button>
-    </div>
-  </form>
-
-  <div *ngIf="successMessage" class="text-green-500 mt-4">
-    {{ successMessage }}
+  <div class="mb-4">
+    <label
+      class="block text-gray-700 text-sm font-bold mb-2"
+      for="nombrecompleto"
+    >
+      Nombre Completo
+    </label>
+    <input
+      type="text"
+      id="nombrecompleto"
+      formControlName="nombrecompleto"
+      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      required
+    />
+    <small
+      *ngIf="
+        peopleForm.get('nombrecompleto')?.invalid &&
+        peopleForm.get('nombrecompleto')?.touched
+      "
+      class="text-red-500 text-xs italic"
+    >
+      Este campo es obligatorio.
+    </small>
   </div>
-  <div *ngIf="errorMessage" class="text-red-500 mt-4">{{ errorMessage }}</div>
-</div>
+
+  <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+      Email
+    </label>
+    <input
+      type="email"
+      id="email"
+      formControlName="email"
+      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      required
+    />
+    <small
+      *ngIf="
+        peopleForm.get('email')?.invalid && peopleForm.get('email')?.touched
+      "
+      class="text-red-500 text-xs italic"
+    >
+      Debe ingresar un correo electrónico válido.
+    </small>
+  </div>
+
+  <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="telefono">
+      Teléfono
+    </label>
+    <input
+      type="text"
+      id="telefono"
+      formControlName="telefono"
+      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      required
+    />
+    <small
+      *ngIf="
+        peopleForm.get('telefono')?.invalid &&
+        peopleForm.get('telefono')?.touched
+      "
+      class="text-red-500 text-xs italic"
+    >
+      Este campo es obligatorio.
+    </small>
+  </div>
+
+  <div class="mb-4" *ngIf="!toEditPerson">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="contrasena">
+      Contraseña
+    </label>
+    <input
+      type="password"
+      id="contrasena"
+      formControlName="contrasena"
+      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      [required]="!toEditPerson"
+      minlength="6"
+    />
+    <small
+      *ngIf="
+        peopleForm.get('contrasena')?.invalid &&
+        peopleForm.get('contrasena')?.touched
+      "
+      class="text-red-500 text-xs italic"
+    >
+      La contraseña debe tener al menos 6 caracteres.
+    </small>
+  </div>
+
+  <div class="flex items-center justify-between">
+    <button
+      type="submit"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+    >
+      {{ formButton }}
+    </button>
+  </div>
+
+  <p *ngIf="successMessage" class="text-green-500 text-xs italic mt-4">
+    {{ successMessage }}
+  </p>
+  <p *ngIf="errorMessage" class="text-red-500 text-xs italic mt-4">
+    {{ errorMessage }}
+  </p>
+</form>

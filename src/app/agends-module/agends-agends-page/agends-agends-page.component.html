@@ -1,9 +1,17 @@
-<div
-  class="min-h-screen flex flex-col items-center justify-between bg-blue-500"
->
-  <h1 class="text-4xl font-bold mb-8 text-white">
-    Agendas de {{ personOwner?.nombrecompleto }}
-  </h1>
+<div class="min-h-screen flex flex-col items-center justify-between bg-blue-500">
+  <agends-remainder [owner]="personOwner"></agends-remainder>
 
-  <app-agends-dashboard [personOwner]="personOwner"></app-agends-dashboard>
+  <div class="flex justify-between w-full p-4">
+    <h1 class="text-4xl font-bold text-white">
+      Agendas de {{ personOwner?.nombrecompleto }}
+    </h1>
+    <button
+      (click)="onLogout()"
+      class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+    >
+      Cerrar Sesión
+    </button>
+  </div>
+
+  <agends-dashboard [personOwner]="personOwner"></agends-dashboard>
 </div>

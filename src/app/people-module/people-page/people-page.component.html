@@ -1,35 +1,41 @@
-<div
-  class="min-h-screen flex flex-col items-center justify-between bg-blue-500"
->
-  <h1 class="text-white text-4xl font-bold mb-8">Agenda Manager</h1>
+<div class="min-h-screen flex flex-col items-center justify-between bg-blue-500">
+  <div class="flex justify-between items-center w-full p-4">
+    <h1 class="text-white text-4xl font-bold">Agenda Manager</h1>
+    <button
+      (click)="onLogout()"
+      class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+    >
+      Cerrar Sesión
+    </button>
+  </div>
 
   <div class="flex-grow flex flex-col items-center">
     <div
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-6xl px-4 mb-8"
     >
       <div *ngFor="let person of people_list">
-        <app-people-card
+        <people-card
           [person]="person"
           (selectedPerson)="onPersonSelected($event)"
-        ></app-people-card>
+        ></people-card>
       </div>
     </div>
   </div>
 
   <div class="flex mb-8 w-full">
     <div class="w-1/2 justify-center">
-      <app-people-form
+      <people-form
         (toClearPerson)="onPersonClear($event)"
         (personAdded)="onPersonAdded($event)"
         [toEditPerson]="toEditPerson"
-      ></app-people-form>
+      ></people-form>
     </div>
     <div class="w-1/4 m-7" *ngIf="selectedPerson">
-      <app-people-details-card
+      <people-details-card
         [selectedPerson]="selectedPerson"
         (deletePerson)="onPersonDeleted($event)"
         (editPerson)="onPersonEdited($event)"
-      ></app-people-details-card>
+      ></people-details-card>
     </div>
   </div>
 </div>

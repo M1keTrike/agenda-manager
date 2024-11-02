@@ -8,6 +8,4 @@ import { PeopleI } from '../people-i';
 })
 export class PeopleDashboardComponent {
   @Input() people_list: PeopleI[] = [];
-
-
 }

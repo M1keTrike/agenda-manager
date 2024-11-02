@@ -1,1 +1,36 @@
-<p>events-events-list works!</p>
+<div class="flex flex-col items-center">
+  <div class="w-1/2">
+    <app-events-event-card
+      *ngFor="let event of eventsList"
+      [event]="event"
+      (selectEvent)="onSelectEvent($event)"
+    ></app-events-event-card>
+  </div>
+
+  <div class="w-full lg:w-1/2">
+    <app-events-event-details-card
+      *ngIf="selectedEvent"
+      [selectedEvent]="selectedEvent"
+      (editEvent)="onEditEvent($event)"
+      (deleteEvent)="onDeleteEvent($event)"
+    ></app-events-event-details-card>
+  </div>
+
+  <div>
+    <button
+      *ngIf="!selectedEvent"
+      (click)="onAddEvent()"
+      class="bg-green-500 text-white px-4 py-2 rounded mb-4"
+    >
+      Agregar Evento
+    </button>
+
+    <app-events-event-form
+      *ngIf="!selectedEvent || selectedEvent"
+      [mainAgend]="mainAgend"
+      [event]="selectedEvent || null"
+      (saveEvent)="onSaveEvent($event)"
+      (cancel)="onCancelForm()"
+    ></app-events-event-form>
+  </div>
+</div>

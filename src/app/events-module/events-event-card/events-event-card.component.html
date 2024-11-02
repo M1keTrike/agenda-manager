@@ -1,1 +1,8 @@
-<p>events-event-card works!</p>
+<div
+  class="bg-white rounded-lg shadow-md p-4 m-2 transition-shadow hover:shadow-lg cursor-pointer"
+  (click)="onSelect()"
+>
+  <h2 class="text-lg font-semibold">{{ event.titulo }}</h2>
+  <p>Tipo: {{ event.tipo_evento }}</p>
+  <p>Inicio: {{ event.fecha_inicio | date }}</p>
+</div>

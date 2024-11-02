@@ -1,5 +1,5 @@
 export interface EventI {
-  id?: string;
+  _id?: string;
   titulo: string;
   descripcion?: string;
   fecha_inicio: Date;
@@ -8,7 +8,7 @@ export interface EventI {
   hora_fin?: string;
   ubicacion?: string;
   tipo_evento: string;
-  estado: 'pendiente' | 'en curso' | 'completado' | 'cancelado';
+  estado:"pendiente" | "en curso" | "completado" | "cancelado";
   id_agenda: string;
   createdAt?: Date;
   updatedAt?: Date;

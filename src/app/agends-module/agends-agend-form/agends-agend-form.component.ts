@@ -1,17 +1,16 @@
-// agends-agend-form.component.ts
 import {
   Component,
-  Input,
-  Output,
   EventEmitter,
-  OnInit,
+  Input,
   OnChanges,
+  OnInit,
+  Output,
   SimpleChanges,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PeopleI } from '../../people-module/people-i';
 import { AgendI } from '../agend-i';
 import { AgendService } from '../agend-service.service';
-import { PeopleI } from '../../people-module/people-i';
 
 @Component({
   selector: 'app-agends-agend-form',
@@ -24,7 +23,7 @@ export class AgendsAgendFormComponent implements OnInit, OnChanges {
   @Output() agendAdded = new EventEmitter<AgendI>();
   @Output() editedAgend = new EventEmitter<boolean>();
   agendaForm!: FormGroup;
-  titleAgendForm: string = "Agregar agenda";
+  titleAgendForm: string = 'Agregar agenda';
 
   constructor(private fb: FormBuilder, private agendService: AgendService) {}
 
@@ -40,7 +39,7 @@ export class AgendsAgendFormComponent implements OnInit, OnChanges {
 
   loadForm(): void {
     if (this.toEditAgend) {
-      this.titleAgendForm = "Editar agenda"
+      this.titleAgendForm = 'Editar agenda';
       this.agendaForm = this.fb.group({
         nombre: [this.toEditAgend.nombre, Validators.required],
         tipo_agenda: [this.toEditAgend.tipo_agenda, Validators.required],
@@ -62,9 +61,8 @@ export class AgendsAgendFormComponent implements OnInit, OnChanges {
         .updateAgend(this.toEditAgend._id, editAgend)
         .subscribe(() => {
           this.agendaForm.reset();
-          this.titleAgendForm = "Agregar agenda"
+          this.titleAgendForm = 'Agregar agenda';
           this.editedAgend.emit(true);
-          
         });
     } else if (this.agendaForm.valid && this.personOwner) {
       const newAgend: AgendI = {

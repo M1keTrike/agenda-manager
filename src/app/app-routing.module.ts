@@ -16,6 +16,13 @@ const routes: Routes = [
         (m) => m.AgendsModuleModule
       ),
   },
+  {
+    path: 'events',
+    loadChildren: () =>
+      import('./events-module/events-module.module').then(
+        (m) => m.EventsModuleModule
+      ),
+  },
   { path: '', redirectTo: 'people', pathMatch: 'full' },
 ];
 

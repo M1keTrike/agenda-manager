@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "postbuild": "echo > dist/agend_manager/.nojekyll",
+    "deploy": "ng deploy && npm run postbuild"
   },
   "private": true,
   "dependencies": {
@@ -31,6 +33,7 @@
     "@angular/compiler-cli": "^18.2.0",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^22.7.4",
+    "angular-cli-ghpages": "^2.0.1",
     "autoprefixer": "^10.4.20",
     "jasmine-core": "~5.2.0",
     "karma": "~6.4.0",

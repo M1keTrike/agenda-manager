@@ -1,1 +1,23 @@
-<p>events-event-details-card works!</p>
+<div *ngIf="selectedEvent" class="bg-white rounded-lg shadow-md p-6">
+    <h2 class="text-lg font-semibold text-gray-800">{{ selectedEvent.titulo }}</h2>
+    <p class="text-gray-600">Descripción: {{ selectedEvent.descripcion }}</p>
+    <p class="text-gray-400 text-xs">Fecha de inicio: {{ selectedEvent.fecha_inicio | date }}</p>
+    <p class="text-gray-400 text-xs">Fecha de fin: {{ selectedEvent.fecha_fin | date }}</p>
+    <p class="text-gray-400 text-xs">Ubicación: {{ selectedEvent.ubicacion }}</p>
+  
+    <div class="flex m-2">
+      <button
+        class="bg-green-500 text-white p-2 rounded m-1 w-1/2 hover:bg-green-600"
+        (click)="onEdit()"
+      >
+        Editar
+      </button>
+      <button
+        class="bg-red-500 text-white p-2 rounded m-1 w-1/2 hover:bg-red-600"
+        (click)="onDelete()"
+      >
+        Eliminar
+      </button>
+    </div>
+  </div>
+  

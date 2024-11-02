@@ -1,1 +1,108 @@
-<p>events-event-form works!</p>
+<div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md mx-auto m-10">
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+    <h2 class="text-xl font-bold mb-4">
+      {{ event ? "Editar Evento" : "Nuevo Evento" }}
+    </h2>
+
+    <label class="block text-sm font-medium text-gray-700">Título</label>
+    <input
+      type="text"
+      formControlName="titulo"
+      class="mt-1 block w-full p-2 border rounded-md"
+    />
+
+    <label class="block text-sm font-medium text-gray-700 mt-4"
+      >Descripción</label
+    >
+    <textarea
+      formControlName="descripcion"
+      class="mt-1 block w-full p-2 border rounded-md"
+    ></textarea>
+
+    <label class="block text-sm font-medium text-gray-700 mt-4"
+      >Fecha de Inicio</label
+    >
+    <input
+      type="date"
+      formControlName="fecha_inicio"
+      class="mt-1 block w-full p-2 border rounded-md"
+    />
+
+    <label class="block text-sm font-medium text-gray-700 mt-4"
+      >Fecha de Fin</label
+    >
+    <input
+      type="date"
+      formControlName="fecha_fin"
+      class="mt-1 block w-full p-2 border rounded-md"
+    />
+
+    <div class="flex space-x-4 mt-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700"
+          >Hora de Inicio</label
+        >
+        <input
+          type="time"
+          formControlName="hora_inicio"
+          class="mt-1 block w-full p-2 border rounded-md"
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700"
+          >Hora de Fin</label
+        >
+        <input
+          type="time"
+          formControlName="hora_fin"
+          class="mt-1 block w-full p-2 border rounded-md"
+        />
+      </div>
+    </div>
+
+    <label class="block text-sm font-medium text-gray-700 mt-4"
+      >Ubicación</label
+    >
+    <input
+      type="text"
+      formControlName="ubicacion"
+      class="mt-1 block w-full p-2 border rounded-md"
+    />
+
+    <label class="block text-sm font-medium text-gray-700 mt-4"
+      >Tipo de Evento</label
+    >
+    <input
+      type="text"
+      formControlName="tipo_evento"
+      class="mt-1 block w-full p-2 border rounded-md"
+    />
+
+    <label class="block text-sm font-medium text-gray-700 mt-4">Estado</label>
+    <select
+      formControlName="estado"
+      class="mt-1 block w-full p-2 border rounded-md"
+    >
+      <option value="pendiente">Pendiente</option>
+      <option value="en curso">En Curso</option>
+      <option value="completado">Completado</option>
+      <option value="cancelado">Cancelado</option>
+    </select>
+
+    <div class="mt-6 flex space-x-4">
+      <button
+        type="submit"
+        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+      >
+        Guardar
+      </button>
+      <button
+        type="button"
+        (click)="onCancel()"
+        class="bg-gray-400 text-white px-4 py-2 rounded-md hover:bg-gray-500"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

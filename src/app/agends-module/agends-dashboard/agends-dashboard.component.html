@@ -4,6 +4,7 @@
   <div class="flex mb-8 w-full">
     <div class="w-1/2 justify-center">
       <app-agends-agend-details-card
+        [agendOwner]="personOwner"
         [selectedAgend]="selectedAgend"
         (deleteAgend)="onAgendDeleted($event)"
         (editAgend)="onAgendEdited($event)"

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { PeopleI } from '../../people-module/people-i';
 import { AgendI } from '../agend-i';
 import { AgendService } from '../agend-service.service';
-import { PeopleI } from '../../people-module/people-i';
 
 @Component({
   selector: 'app-agends-dashboard',

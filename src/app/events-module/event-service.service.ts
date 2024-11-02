@@ -1,4 +1,3 @@
-// src/app/evento.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -8,7 +7,7 @@ import { environment } from '../../enviroments/enviroment';
 @Injectable({
   providedIn: 'root',
 })
-export class EventoService {
+export class EventService {
   private apiUrl = `${environment.apiUrl}/eventos`;
 
   constructor(private http: HttpClient) {}
@@ -26,6 +25,7 @@ export class EventoService {
   }
 
   updateEvent(id: string, evento: EventI): Observable<EventI> {
+    console.log(`${this.apiUrl}/${id}`);
     return this.http.put<EventI>(`${this.apiUrl}/${id}`, evento);
   }
 
